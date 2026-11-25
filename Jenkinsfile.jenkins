@@ -1,0 +1,31 @@
+pipeline{
+    agent any
+    
+    stages{
+        stage('Build'){
+            steps{
+                echo 'Parent Pipeline: Build Started...'
+            }
+        }
+
+        stage('Test'){
+            steps{
+                echo 'Parent Pipeline: Testing Completed..'
+            }
+        }
+
+        stage('Trigger Child Pipeline'){
+            steps{
+                build job: 'Child-Pipeline',
+                wait: true,
+                propogate: true
+            }
+        }
+
+        stage('Deploy'){
+            steps{
+                echo 'Parent Pipeline: Deployment started'
+            }
+        }
+    }
+}
