@@ -18,7 +18,7 @@ pipeline{
             steps{
                 build job: 'Child-Pipeline',
                 wait: true,
-                propogate: true
+                propagate: true
             }
         }
 
